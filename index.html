@@ -1,131 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reyence Chua | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reyence Chua | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 </head>
 <body>
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-content" data-aos="fade-down">
-            <img src="assets/profile.jpg" alt="Reyence Chua" class="profile-pic" data-aos="zoom-in">
-            <h1>Hi, I'm Reyence Chua</h1>
-            <p>Student, Researcher, AI Enthusiast, Musician</p>
-            <div class="contact-buttons" data-aos="fade-up" data-aos-delay="200">
-                <a href="mailto:reyence_chua_rui_heng@students.edu.sg" class="btn">Student Email</a>
-                <a href="mailto:r.chua.imail@gmail.com" class="btn btn-secondary">Personal Email</a>
-            </div>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content" data-aos="fade-down">
+      <img src="assets/profile.jpg" alt="Reyence Chua" class="profile-pic" data-aos="zoom-in">
+      <h1>Hi, I'm Reyence Chua</h1>
+      <p>Student • Researcher • AI Enthusiast • Musician</p>
+      <div class="contact-buttons" data-aos="fade-up" data-aos-delay="200">
+        <a href="mailto:reyence_chua_rui_heng@students.edu.sg" class="btn">Student Email</a>
+        <a href="mailto:r.chua.imail@gmail.com" class="btn btn-secondary">Personal Email</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container" data-aos="fade-up">
+      <h2>About Me</h2>
+      <p>
+        Born in <strong>2010</strong>, I currently study at <strong>Bukit Batok Secondary School</strong>.  
+        I lead as <strong>Student Conductor</strong> and <strong>EXCO (Head of Logistics)</strong> in the school choir.  
+      </p>
+      <p>
+        I am deeply passionate about <strong>Artificial Intelligence</strong>, focusing on <strong>NLP, LLMs, and AGI generalization</strong>.  
+        I have authored a research paper on <em>Real-Time Prompt Rewriting for Bias Mitigation in Large Language Models</em> <strong>(placeholder for publication link)</strong>,  
+        and had a minor collaboration with <strong>Dr. Subramanian KRS Sankaranarayanan from A*STAR</strong>.  
+      </p>
+      <p>
+        Beyond STEM, I play the violin (currently <strong>ABRSM Grade 8</strong>, taking Diploma soon), enjoy public speaking and emceeing events,  
+        and have minor experience in 3D CAD modelling using <strong>SolidWorks</strong>.  
+        I also practice <strong>rock climbing (bouldering)</strong> and <strong>calisthenics</strong>, and listen to a wide variety of music genres.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section">
+    <div class="container" data-aos="fade-up">
+      <h2>Skills & Interests</h2>
+      <div class="skills-grid">
+        
+        <!-- Skill Card Example -->
+        <div class="skill-card" data-aos="flip-left">
+          <img src="assets/research.jpg" alt="STEM & Research">
+          <h3>STEM & Research</h3>
+          <p>AI, ML, DL, NLP, LLMs, AGI research</p>
+          <button class="see-more-btn">See More</button>
+          <div class="see-more hidden">
+            <img src="assets/paper.jpg" alt="Paper Work">
+            <p>I actively write and publish in AI research, with focus on trustworthy AI and generalization. Easy to add more papers here.</p>
+          </div>
         </div>
-    </header>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container" data-aos="fade-up">
-            <h2>About Me</h2>
-            <p>
-                Born in <strong>2010</strong>, I currently study at <strong>Bukit Batok Secondary School</strong>.  
-                I lead as <strong>Student Conductor</strong> and <strong>EXCO (Head of Logistics)</strong> in the school choir.  
-            </p>
-            <div id="read-more" class="hidden">
-                <p>
-                    I am deeply passionate about <strong>Artificial Intelligence</strong>, focusing on <strong>NLP, LLMs, and AGI generalization</strong>.  
-                    I have authored a research paper on <em>Real-Time Prompt Rewriting for Bias Mitigation in Large Language Models</em> <strong>(placeholder for publication link)</strong>,  
-                    and had a minor collaboration with <strong>Dr. Subramanian KRS Sankaranarayanan from A*STAR</strong>.  
-                </p>
-                <p>
-                    Beyond STEM, I play the violin (currently <strong>ABRSM Grade 8</strong>, taking Diploma soon), enjoy public speaking and emceeing events,  
-                    and have minor experience in 3D CAD modelling using <strong>SolidWorks</strong>.  
-                    I also practice <strong>rock climbing (bouldering)</strong> and <strong>calisthenics</strong>, and listen to a wide variety of music genres.
-                </p>
-            </div>
-            <button id="read-more-btn" class="btn">Read More</button>
+        <div class="skill-card" data-aos="flip-left" data-aos-delay="100">
+          <img src="assets/coding.jpg" alt="Programming">
+          <h3>Programming</h3>
+          <p>Python, minor CAD modelling in SolidWorks</p>
+          <button class="see-more-btn">See More</button>
+          <div class="see-more hidden">
+            <img src="assets/code-demo.jpg" alt="Coding Project">
+            <p>From AI prototypes to automation scripts, I constantly build projects. Add new screenshots or projects here easily.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container" data-aos="fade-up">
-            <h2>Skills & Interests</h2>
-            <div class="skills-grid">
-                <div class="skill-card" data-aos="flip-left">
-                    <img src="assets/research.jpg" alt="STEM & Research">
-                    <h3>STEM & Research</h3>
-                    <p>AI, ML, DL, NLP, LLMs, AGI research</p>
-                </div>
-                <div class="skill-card" data-aos="flip-left" data-aos-delay="100">
-                    <img src="assets/coding.jpg" alt="Programming">
-                    <h3>Programming</h3>
-                    <p>Python, minor CAD modelling in SolidWorks</p>
-                </div>
-                <div class="skill-card" data-aos="flip-left" data-aos-delay="200">
-                    <img src="assets/violin.jpg" alt="Music">
-                    <h3>Music</h3>
-                    <p>Violin (ABRSM Grade 8, Diploma soon)</p>
-                </div>
-                <div class="skill-card" data-aos="flip-left" data-aos-delay="300">
-                    <img src="assets/choir1.jpg" alt="Leadership & Speaking">
-                    <img src="assets/choir2.jpg" alt="Choir Conducting">
-                    <h3>Leadership & Speaking</h3>
-                    <p>Emcee, Choir conductor, EXCO logistics</p>
-                </div>
-                <div class="skill-card" data-aos="flip-left" data-aos-delay="400">
-                    <img src="assets/climbing.jpg" alt="Sports & Fitness">
-                    <h3>Sports & Fitness</h3>
-                    <p>Rock climbing, Calisthenics</p>
-                </div>
-                <div class="skill-card" data-aos="flip-left" data-aos-delay="500">
-                    <img src="assets/projects.jpg" alt="Hobbies">
-                    <h3>Hobbies</h3>
-                    <p>Exploring music, AI research, 3D CAD projects</p>
-                </div>
-            </div>
+        <div class="skill-card" data-aos="flip-left" data-aos-delay="200">
+          <img src="assets/violin.jpg" alt="Music">
+          <h3>Music</h3>
+          <p>Violin (ABRSM Grade 8, Diploma soon)</p>
+          <button class="see-more-btn">See More</button>
+          <div class="see-more hidden">
+            <img src="assets/performance.jpg" alt="Performance">
+            <p>I perform solo and in ensembles, always pushing my musical expression. You can add more recital photos here.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Other sections remain same -->
-    <section id="achievements" class="section section-dark">
-        <div class="container" data-aos="fade-up">
-            <h2>Achievements & Competitions</h2>
-            <ul>
-                <li><strong>SJPO Physics Olympiad</strong> – Participant</li>
-                <li><strong>SYF (Singapore Youth Festival)</strong> – Accomplishment Award (Choir)</li>
-                <li><strong>Ngee Ann Polytechnic School of Engineering Offshore & Sustainability Challenge</strong>:
-                    <ul>
-                        <li>Year 1: Design Marvel Award (Hull)</li>
-                        <li>Year 2: Design Marvel Award (Propulsion)</li>
-                        <li>Year 3: Merit Award + Design Marvel Award (Hull)</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </section>
+        <!-- You can copy-paste more skill cards following this template -->
 
-    <!-- Testimonials & Footer same -->
-    <footer class="footer" data-aos="fade-up">
-        <p>Connect with me: 
-            <a href="https://github.com/Reyence">GitHub</a> | 
-            <a href="mailto:reyence_chua_rui_heng@students.edu.sg">Student Email</a> | 
-            <a href="mailto:r.chua.imail@gmail.com">Personal Email</a> | 
-            <span>ORCID https://orcid.org/0009-0005-3144-8152 / arXiv placeholders</span>
-        </p>
-        <p>&copy; 2025 Reyence Chua</p>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-      AOS.init({ duration: 1000, once: true });
+  <!-- Achievements -->
+  <section id="achievements" class="section section-dark">
+    <div class="container" data-aos="fade-up">
+      <h2>Achievements & Competitions</h2>
+      <ul>
+        <li><strong>SJPO Physics Olympiad</strong> – Participant</li>
+        <li><strong>SYF (Singapore Youth Festival)</strong> – Accomplishment Award (Choir)</li>
+        <li><strong>Ngee Ann Polytechnic School of Engineering Offshore & Sustainability Challenge</strong>:
+          <ul>
+            <li>Year 1: Design Marvel Award (Hull)</li>
+            <li>Year 2: Design Marvel Award (Propulsion)</li>
+            <li>Year 3: Merit Award + Design Marvel Award (Hull)</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-      // Read more toggle
-      const btn = document.getElementById("read-more-btn");
-      const content = document.getElementById("read-more");
+  <!-- Testimonials -->
+  <section id="testimonials" class="section">
+    <div class="container" data-aos="fade-up">
+      <h2>Testimonials</h2>
+      <div class="testimonial-slider">
+        <blockquote>"Reyence is a dedicated student with an exceptional passion for AI research."</blockquote>
+        <blockquote>"He has strong leadership qualities and inspires those around him."</blockquote>
+        <!-- Add more testimonials easily -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" data-aos="fade-up">
+    <p>Connect with me: 
+      <a href="https://github.com/Reyence">GitHub</a> | 
+      <a href="mailto:reyence_chua_rui_heng@students.edu.sg">Student Email</a> | 
+      <a href="mailto:r.chua.imail@gmail.com">Personal Email</a> | 
+      <span>ORCID https://orcid.org/0009-0005-3144-8152 / arXiv placeholders</span>
+    </p>
+    <p>&copy; 2025 Reyence Chua</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    // Toggle See More for each skill card
+    const seeMoreBtns = document.querySelectorAll(".see-more-btn");
+    seeMoreBtns.forEach(btn => {
       btn.addEventListener("click", () => {
+        const content = btn.nextElementSibling;
         content.classList.toggle("hidden");
-        btn.textContent = content.classList.contains("hidden") ? "Read More" : "Show Less";
+        btn.textContent = content.classList.contains("hidden") ? "See More" : "Show Less";
       });
-    </script>
+    });
+  </script>
 </body>
 </html>
+
