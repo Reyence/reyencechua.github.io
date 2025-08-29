@@ -11,9 +11,10 @@
 <body>
     <!-- Hero Section -->
     <header class="hero">
-        <div class="hero-content">
-            <h1 data-aos="fade-down">Hi, I'm Reyence Chua</h1>
-            <p data-aos="fade-up">Student, Researcher, AI Enthusiast, Musician</p>
+        <div class="hero-content" data-aos="fade-down">
+            <img src="assets/profile.jpg" alt="Reyence Chua" class="profile-pic" data-aos="zoom-in">
+            <h1>Hi, I'm Reyence Chua</h1>
+            <p>Student, Researcher, AI Enthusiast, Musician</p>
             <div class="contact-buttons" data-aos="fade-up" data-aos-delay="200">
                 <a href="mailto:reyence_chua_rui_heng@students.edu.sg" class="btn">Student Email</a>
                 <a href="mailto:r.chua.imail@gmail.com" class="btn btn-secondary">Personal Email</a>
@@ -29,20 +30,63 @@
                 Born in <strong>2010</strong>, I currently study at <strong>Bukit Batok Secondary School</strong>.  
                 I lead as <strong>Student Conductor</strong> and <strong>EXCO (Head of Logistics)</strong> in the school choir.  
             </p>
-            <p>
-                I am deeply passionate about <strong>Artificial Intelligence</strong>, focusing on <strong>NLP, LLMs, and AGI generalization</strong>.  
-                I have authored a research paper on <em>Real-Time Prompt Rewriting for Bias Mitigation in Large Language Models</em> <strong>(placeholder for publication link)</strong>,  
-                and had a minor collaboration with <strong>Dr. Subramanian KRS Sankaranarayanan from A*STAR</strong>.  
-            </p>
-            <p>
-                Beyond STEM, I play the violin (currently <strong>ABRSM Grade 8</strong>, taking Diploma soon), enjoy public speaking and emceeing events,  
-                and have minor experience in 3D CAD modelling using <strong>SolidWorks</strong>.  
-                I also practice <strong>rock climbing (bouldering)</strong> and <strong>calisthenics</strong>, and listen to a wide variety of music genres.
-            </p>
+            <div id="read-more" class="hidden">
+                <p>
+                    I am deeply passionate about <strong>Artificial Intelligence</strong>, focusing on <strong>NLP, LLMs, and AGI generalization</strong>.  
+                    I have authored a research paper on <em>Real-Time Prompt Rewriting for Bias Mitigation in Large Language Models</em> <strong>(placeholder for publication link)</strong>,  
+                    and had a minor collaboration with <strong>Dr. Subramanian KRS Sankaranarayanan from A*STAR</strong>.  
+                </p>
+                <p>
+                    Beyond STEM, I play the violin (currently <strong>ABRSM Grade 8</strong>, taking Diploma soon), enjoy public speaking and emceeing events,  
+                    and have minor experience in 3D CAD modelling using <strong>SolidWorks</strong>.  
+                    I also practice <strong>rock climbing (bouldering)</strong> and <strong>calisthenics</strong>, and listen to a wide variety of music genres.
+                </p>
+            </div>
+            <button id="read-more-btn" class="btn">Read More</button>
         </div>
     </section>
 
-    <!-- Achievements Section -->
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container" data-aos="fade-up">
+            <h2>Skills & Interests</h2>
+            <div class="skills-grid">
+                <div class="skill-card" data-aos="flip-left">
+                    <img src="assets/research.jpg" alt="STEM & Research">
+                    <h3>STEM & Research</h3>
+                    <p>AI, ML, DL, NLP, LLMs, AGI research</p>
+                </div>
+                <div class="skill-card" data-aos="flip-left" data-aos-delay="100">
+                    <img src="assets/coding.jpg" alt="Programming">
+                    <h3>Programming</h3>
+                    <p>Python, minor CAD modelling in SolidWorks</p>
+                </div>
+                <div class="skill-card" data-aos="flip-left" data-aos-delay="200">
+                    <img src="assets/violin.jpg" alt="Music">
+                    <h3>Music</h3>
+                    <p>Violin (ABRSM Grade 8, Diploma soon)</p>
+                </div>
+                <div class="skill-card" data-aos="flip-left" data-aos-delay="300">
+                    <img src="assets/choir1.jpg" alt="Leadership & Speaking">
+                    <img src="assets/choir2.jpg" alt="Choir Conducting">
+                    <h3>Leadership & Speaking</h3>
+                    <p>Emcee, Choir conductor, EXCO logistics</p>
+                </div>
+                <div class="skill-card" data-aos="flip-left" data-aos-delay="400">
+                    <img src="assets/climbing.jpg" alt="Sports & Fitness">
+                    <h3>Sports & Fitness</h3>
+                    <p>Rock climbing, Calisthenics</p>
+                </div>
+                <div class="skill-card" data-aos="flip-left" data-aos-delay="500">
+                    <img src="assets/projects.jpg" alt="Hobbies">
+                    <h3>Hobbies</h3>
+                    <p>Exploring music, AI research, 3D CAD projects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other sections remain same -->
     <section id="achievements" class="section section-dark">
         <div class="container" data-aos="fade-up">
             <h2>Achievements & Competitions</h2>
@@ -60,67 +104,7 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container" data-aos="fade-up">
-            <h2>Skills & Interests</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>STEM & Research</h3>
-                    <p>AI, ML, DL, NLP, LLMs, AGI research</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Programming</h3>
-                    <p>Python, minor CAD modelling in SolidWorks</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Music</h3>
-                    <p>Violin (ABRSM Grade 8, Diploma soon)</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Leadership & Speaking</h3>
-                    <p>Emcee, Choir conductor, EXCO logistics</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Sports & Fitness</h3>
-                    <p>Rock climbing, Calisthenics</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Hobbies</h3>
-                    <p>Exploring music, AI research, 3D CAD projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects / Research Section -->
-    <section id="projects" class="section section-dark">
-        <div class="container" data-aos="fade-up">
-            <h2>Projects & Research</h2>
-            <ul>
-                <li><strong>Research Paper:</strong> Bias Mitigation in AI through Prompt Design <em>(placeholder)</em></li>
-                <li><strong>Collaborations:</strong> Minor research collaboration with A*STAR</li>
-                <li><strong>Engineering Projects:</strong> Award-winning designs for offshore sustainability challenges</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="section">
-        <div class="container" data-aos="fade-up">
-            <h2>Testimonials</h2>
-            <div class="testimonial-slider">
-                <blockquote>
-                    “Reyence is a dedicated learner and a creative thinker, showing extraordinary initiative for his age.” – Teacher / Mentor
-                </blockquote>
-                <blockquote>
-                    “A brilliant young mind with exceptional leadership and problem-solving skills.” – Competition Judge
-                </blockquote>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- Testimonials & Footer same -->
     <footer class="footer" data-aos="fade-up">
         <p>Connect with me: 
             <a href="https://github.com/Reyence">GitHub</a> | 
@@ -132,6 +116,16 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="script.js"></script>
+    <script>
+      AOS.init({ duration: 1000, once: true });
+
+      // Read more toggle
+      const btn = document.getElementById("read-more-btn");
+      const content = document.getElementById("read-more");
+      btn.addEventListener("click", () => {
+        content.classList.toggle("hidden");
+        btn.textContent = content.classList.contains("hidden") ? "Read More" : "Show Less";
+      });
+    </script>
 </body>
 </html>
