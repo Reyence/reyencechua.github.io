@@ -75,7 +75,7 @@ a { text-decoration:none; color: inherit; }
 }
 .skill-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.2); }
 .skill-card img {
-  width:100%; max-height:150px; object-fit:contain;
+  width:100%; max-height:150px; object-fit:cover;
   border-radius:8px; margin-bottom:0.8rem;
 }
 .skill-card h3 { margin-bottom:0.5rem; }
@@ -88,8 +88,14 @@ a { text-decoration:none; color: inherit; }
 .see-more {
   margin-top:1rem; text-align:left;
 }
+/* See-more images (drop-down inside skill cards) */
 .see-more img {
-  width:100%; border-radius:8px; margin-bottom:0.5rem;
+  width: 100%;
+  max-height: 300px;       /* optional: keep them from blowing up too tall */
+  object-fit: contain;     /* ✅ full portrait/cert visible */
+  background: #000;        /* adds padding background */
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
 }
 
 /* Testimonials */
