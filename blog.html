@@ -4,101 +4,289 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Blog — Reyence Chua</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <meta name="description" content="AI & STEM blog by Reyence Chua — experiments, research updates, tutorials and reflections." />
   <style>
-    /* ====== Minimal, modern blog styles (keeps in sync with your site) ====== */
-    :root{
-      --bg:#fafafa; --card:#fff; --ink:#111; --muted:#666; --accent:#29abe2; --glass: rgba(255,255,255,0.7);
-      --max:1100px;
+    /* ====== Professional Blog Design ====== */
+    :root {
+      --bg: #fafafa; 
+      --card: #fff; 
+      --ink: #111; 
+      --muted: #666; 
+      --accent: #29abe2; 
+      --accent-dark: #1e87b8;
+      --glass: rgba(255,255,255,0.7);
+      --max: 1100px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+      --shadow-lg: 0 8px 28px rgba(0,0,0,0.15);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --transition: all 0.3s ease;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
+
+    .dark-mode {
+      --bg: #121212;
+      --card: #1e1e1e;
+      --ink: #f1f1f1;
+      --muted: #a0a0a0;
+      --accent: #4fc3f7;
+      --accent-dark: #29b6f6;
+      --glass: rgba(30,30,30,0.7);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; scroll-behavior: smooth; }
+    body {
       font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:var(--bg); color:var(--ink); margin:0; -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale; line-height:1.5;
+      background: var(--bg); color: var(--ink); margin: 0; -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale; line-height: 1.6;
     }
-    a{color:var(--accent); text-decoration:none}
-    a:hover{text-decoration:underline}
+    a { color: var(--accent); text-decoration: none; transition: var(--transition); }
+    a:hover { color: var(--accent-dark); text-decoration: underline; }
 
     /* Top nav */
     .nav {
-      display:flex; align-items:center; justify-content:space-between;
-      max-width:var(--max); margin:1.1rem auto; padding: .4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: var(--max); margin: 1.1rem auto; padding: 0.4rem 1.2rem;
+      background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow-sm);
     }
-    .nav .brand { font-weight:700; font-size:1.05rem; }
-    .nav .links { display:flex; gap:.8rem; align-items:center; }
-    .nav .links a.btn{ background:var(--card); padding:.45rem .7rem; border-radius:8px; border:1px solid #eee; font-weight:600; box-shadow:0 4px 12px rgba(0,0,0,0.04) }
-    .nav .links a.btn.primary{ background:var(--accent); color:#fff; border-color:transparent }
+    .nav .brand { font-weight: 700; font-size: 1.1rem; }
+    .nav .links { display: flex; gap: 0.8rem; align-items: center; }
+    .nav .links a.btn { 
+      background: var(--card); padding: 0.5rem 0.9rem; border-radius: var(--radius-sm); 
+      border: 1px solid #eee; font-weight: 500; box-shadow: var(--shadow-sm); 
+      font-size: 0.9rem;
+    }
+    .nav .links a.btn.primary { 
+      background: var(--accent); color: #fff; border-color: transparent; 
+      box-shadow: 0 4px 12px rgba(41, 171, 226, 0.25);
+    }
+    .nav .links a.btn.primary:hover { background: var(--accent-dark); }
+
+    /* Theme toggle */
+    .theme-toggle {
+      background: none; border: none; color: var(--muted); cursor: pointer;
+      font-size: 1.2rem; padding: 0.5rem; border-radius: 50%;
+      transition: var(--transition);
+    }
+    .theme-toggle:hover { color: var(--accent); background: rgba(0,0,0,0.05); }
 
     /* Page container */
-    .wrap { max-width:var(--max); margin:0 auto; padding:1.2rem; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 1.2rem; }
 
+    /* Hero section */
     .hero {
-      background: linear-gradient(135deg,#4f00bc,#29abe2);
-      color:#fff; padding:2.2rem; border-radius:12px; margin-bottom:1rem;
-      box-shadow: 0 12px 30px rgba(0,0,0,.12);
+      background: linear-gradient(135deg, #4f00bc, #29abe2);
+      color: #fff; padding: 2.5rem; border-radius: var(--radius); margin-bottom: 2rem;
+      box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
     }
-    .hero h1{ margin:0 0 .25rem 0; font-size:1.4rem; }
-    .hero p{ margin:0; color:rgba(255,255,255,.95); opacity:.95 }
+    .hero::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" stroke="white" stroke-width="2" fill="none" /></svg>');
+      background-size: 120px 120px;
+    }
+    .hero h1 { margin: 0 0 0.5rem 0; font-size: 1.8rem; font-weight: 700; position: relative; }
+    .hero p { margin: 0; color: rgba(255,255,255,0.9); font-size: 1.05rem; position: relative; max-width: 600px; }
 
     /* Layout: sidebar + content on wide screens */
-    .layout { display:grid; grid-template-columns: 1fr; gap:1.2rem; margin-top:1rem; }
-    @media(min-width:980px){ .layout{ grid-template-columns: 320px 1fr; } }
+    .layout { 
+      display: grid; grid-template-columns: 1fr; gap: 1.8rem; margin-top: 1.5rem; 
+      position: relative;
+    }
+    @media(min-width: 980px) { 
+      .layout { grid-template-columns: 320px 1fr; } 
+    }
+
+    /* Mobile filter toggle */
+    .mobile-filter-toggle {
+      display: none; background: var(--card); border: 1px solid #eee; padding: 0.6rem 1rem;
+      border-radius: var(--radius-sm); margin-bottom: 1rem; width: 100%; text-align: left;
+      font-weight: 500; color: var(--muted); cursor: pointer; box-shadow: var(--shadow-sm);
+    }
+    .mobile-filter-toggle i { margin-right: 0.5rem; }
+    @media(max-width: 979px) {
+      .mobile-filter-toggle { display: block; }
+      .left { 
+        display: none; position: fixed; top: 0; left: 0; bottom: 0; 
+        width: 85%; max-width: 350px; z-index: 1000; overflow-y: auto;
+        padding: 1.5rem; box-shadow: var(--shadow-lg); transform: translateX(-100%);
+        transition: transform 0.3s ease; border-radius: 0 var(--radius) var(--radius) 0;
+      }
+      .left.active { 
+        display: block; transform: translateX(0); 
+      }
+      .overlay {
+        display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.5); z-index: 999;
+      }
+      .overlay.active { display: block; }
+      .close-sidebar {
+        position: absolute; top: 1rem; right: 1rem; background: none; border: none;
+        font-size: 1.5rem; color: var(--muted); cursor: pointer;
+      }
+    }
 
     /* Left column: filters + about */
     .left {
-      position:sticky; top:1rem; align-self:start; background:var(--card); padding:1rem; border-radius:10px;
-      box-shadow:0 8px 20px rgba(15,15,15,0.04);
+      position: sticky; top: 1.5rem; align-self: start; background: var(--card); 
+      padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow-md);
+      height: min-content; max-height: calc(100vh - 2rem); overflow-y: auto;
     }
-    .left h3{ margin:.1rem 0 .6rem 0 }
-    .search { display:flex; gap:.5rem; margin-bottom:1rem; }
-    .search input{ flex:1; padding:.6rem .75rem; border-radius:8px; border:1px solid #eee;}
-    .filters { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:.8rem; }
-    .chip { padding:.3rem .6rem; border-radius:999px; background:#f2f8ff; color:var(--accent); font-weight:600; border:1px solid rgba(41,171,226,.12); cursor:pointer; }
-    .chip.active{ background:var(--accent); color:#fff; }
+    .left h3 { margin: 0 0 1rem 0; font-size: 1.2rem; font-weight: 600; }
+    .search { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; position: relative; }
+    .search input { 
+      flex: 1; padding: 0.75rem 1rem; border-radius: var(--radius-sm); 
+      border: 1px solid #eee; font-size: 0.95rem; background: var(--bg);
+      color: var(--ink); box-shadow: var(--shadow-sm);
+    }
+    .search input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(41, 171, 226, 0.2); }
+    .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+    .chip { 
+      padding: 0.4rem 0.9rem; border-radius: 999px; background: #f2f8ff; 
+      color: var(--accent); font-weight: 500; border: 1px solid rgba(41,171,226,.15); 
+      cursor: pointer; font-size: 0.9rem; transition: var(--transition);
+    }
+    .chip:hover { background: #e6f3ff; }
+    .chip.active { background: var(--accent); color: #fff; border-color: transparent; }
 
-    .meta { font-size:.92rem; color:var(--muted); margin-top:.8rem; line-height:1.4; }
+    .meta { font-size: 0.92rem; color: var(--muted); margin-top: 1.2rem; line-height: 1.5; }
+    .meta p { margin-bottom: 0.8rem; }
 
     /* Post list */
-    .posts { display:flex; flex-direction:column; gap:1rem; }
+    .posts { display: flex; flex-direction: column; gap: 1.5rem; }
     .card {
-      background:var(--card); padding:1rem; border-radius:10px; display:grid; grid-template-columns: 120px 1fr; gap:1rem;
-      align-items:center; box-shadow:0 6px 18px rgba(0,0,0,.04);
+      background: var(--card); padding: 1.5rem; border-radius: var(--radius); 
+      display: flex; flex-direction: column; gap: 1.2rem; box-shadow: var(--shadow-sm);
+      transition: var(--transition); border: 1px solid rgba(0,0,0,0.05);
     }
-    .card img{ width:120px; height:80px; object-fit:cover; border-radius:8px; }
-    .card h4{ margin:0 0 .3rem 0 }
-    .card p{ margin:0; color:var(--muted); font-size:.95rem }
-    .card .meta{ font-size:.82rem; color:var(--muted); margin-top:.55rem }
+    .card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .card-content { display: flex; gap: 1.5rem; }
+    .card img { 
+      width: 140px; height: 100px; object-fit: cover; border-radius: var(--radius-sm);
+      flex-shrink: 0;
+    }
+    .card-text { flex: 1; }
+    .card h4 { 
+      margin: 0 0 0.5rem 0; font-size: 1.2rem; font-weight: 600; 
+      line-height: 1.4; display: -webkit-box;
+      -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .card p { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+    .card .meta-info { 
+      display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+      margin-top: 0.8rem; font-size: 0.85rem; color: var(--muted);
+    }
+    .card .tag { 
+      padding: 0.25rem 0.6rem; border-radius: 4px; background: #f0f6fb; 
+      color: var(--accent); font-weight: 500; font-size: 0.8rem;
+    }
+
+    @media(max-width: 768px) {
+      .card-content { flex-direction: column; }
+      .card img { width: 100%; height: 180px; }
+    }
 
     /* Read view */
     .article {
-      background:var(--card); padding:1.2rem; border-radius:10px; box-shadow:0 12px 30px rgba(0,0,0,.06);
+      background: var(--card); padding: 2rem; border-radius: var(--radius); 
+      box-shadow: var(--shadow-md); margin-bottom: 2rem;
     }
-    .article h2{ margin:.1rem 0 .5rem 0 }
-    .article .lead{ color:var(--muted); margin-bottom:.8rem }
-    .article .meta{ font-size:.9rem; color:var(--muted); margin-bottom:1rem }
-    .article img.hero{ width:100%; max-height:360px; object-fit:cover; border-radius:8px; margin-bottom:1rem; }
+    .article .date { 
+      font-size: 0.95rem; color: var(--muted); margin-bottom: 0.5rem; 
+      display: block; 
+    }
+    .article h2 { 
+      margin: 0 0 1rem 0; font-size: 1.8rem; font-weight: 700; 
+      line-height: 1.3; color: var(--ink);
+    }
+    .article .lead { 
+      color: var(--muted); margin-bottom: 1.5rem; font-size: 1.1rem; 
+      line-height: 1.6; font-weight: 400;
+    }
+    .article .meta { 
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+      padding-bottom: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .article img.hero { 
+      width: 100%; height: auto; max-height: 400px; object-fit: cover; 
+      border-radius: var(--radius); margin-bottom: 2rem; box-shadow: var(--shadow-sm);
+    }
 
-    .content { margin-top:.6rem; color:var(--ink) }
-    .content p{ margin:.6rem 0 }
-    .content pre{ background:#0f1724; color:#fff; padding: .8rem; overflow:auto; border-radius:8px; font-family: monospace; font-size:.9rem }
-    .tags { margin-top:1rem; display:flex; gap:.5rem; flex-wrap:wrap }
-    .tag{ padding:.3rem .55rem; border-radius:6px; background:#f0f6fb; color:var(--accent); font-weight:600 }
+    .content { margin-top: 1.5rem; color: var(--ink); }
+    .content h3 { 
+      margin: 2rem 0 1rem 0; font-size: 1.4rem; font-weight: 600;
+      color: var(--ink);
+    }
+    .content p { margin: 1.2rem 0; line-height: 1.7; }
+    .content ul, .content ol { margin: 1.2rem 0; padding-left: 1.5rem; }
+    .content li { margin: 0.5rem 0; line-height: 1.6; }
+    .content pre { 
+      background: #0f1724; color: #fff; padding: 1.2rem; overflow: auto; 
+      border-radius: var(--radius-sm); font-family: monospace; font-size: 0.9rem;
+      line-height: 1.5; margin: 1.5rem 0; box-shadow: var(--shadow-sm);
+    }
+    .content code { 
+      background: rgba(41, 171, 226, 0.1); color: var(--accent); 
+      padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace;
+      font-size: 0.9em;
+    }
+    .tags { 
+      margin-top: 2rem; display: flex; gap: 0.5rem; flex-wrap: wrap; 
+      padding-top: 1.5rem; border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    .tag { 
+      padding: 0.4rem 0.8rem; border-radius: var(--radius-sm); 
+      background: #f0f6fb; color: var(--accent); font-weight: 500;
+      font-size: 0.85rem;
+    }
 
     /* Reading time */
-    .reading-time { color:var(--muted); font-size:.92rem; margin-left:.6rem }
+    .reading-time { 
+      display: flex; align-items: center; gap: 0.3rem; font-size: 0.9rem;
+    }
+
+    /* Back to posts button */
+    .back-button {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1.2rem; background: var(--card); border: 1px solid #eee;
+      border-radius: var(--radius-sm); color: var(--muted); font-weight: 500;
+      transition: var(--transition); margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);
+    }
+    .back-button:hover { 
+      background: var(--accent); color: white; border-color: var(--accent);
+      text-decoration: none;
+    }
 
     /* Empty / no results */
-    .empty { text-align:center; color:var(--muted); padding:1.2rem; }
+    .empty { 
+      text-align: center; color: var(--muted); padding: 3rem 1.2rem; 
+      background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow-sm);
+    }
+    .empty i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
 
-    /* Footer small */
-    .mini-footer { text-align:center; color:var(--muted); margin:1.8rem 0 4rem; font-size:.95rem }
+    /* Footer */
+    .mini-footer { 
+      text-align: center; color: var(--muted); margin: 3rem 0 2rem; 
+      font-size: 0.95rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1);
+    }
 
     /* Utility */
-    .small { font-size:.9rem; color:var(--muted) }
-    button.reset{ border:0; background:transparent; color:var(--accent); font-weight:700; cursor:pointer }
+    .small { font-size: 0.9rem; color: var(--muted) }
+    button.reset { 
+      border: 0; background: transparent; color: var(--accent); 
+      font-weight: 600; cursor: pointer; padding: 0.5rem;
+      border-radius: var(--radius-sm); transition: var(--transition);
+    }
+    button.reset:hover { background: rgba(41, 171, 226, 0.1); }
+
+    /* Loading animation */
+    .loading { 
+      display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(41, 171, 226, 0.3);
+      border-radius: 50%; border-top-color: var(--accent); animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
@@ -107,6 +295,9 @@
   <div class="nav wrap">
     <div class="brand"><a href="index.html" style="color:inherit; text-decoration:none;">Reyence Chua</a> — Blog</div>
     <div class="links">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+      </button>
       <a class="btn" href="index.html">Home</a>
       <a class="btn" href="cv.html">CV</a>
       <a class="btn primary" href="blog.html">AI & STEM</a>
@@ -116,34 +307,45 @@
   <main class="wrap">
 
     <section class="hero">
-      <h1>AI & STEM Lab notes</h1>
+      <h1>AI & STEM Lab Notes</h1>
       <p>Short, focused posts on experiments, model updates, and project diaries. Research-first — written to be useful to other students and researchers.</p>
     </section>
 
     <div class="layout">
+      <!-- Mobile filter toggle -->
+      <button class="mobile-filter-toggle" id="mobileFilterToggle">
+        <i class="fas fa-filter"></i> Filter Posts
+      </button>
+      
+      <!-- Overlay for mobile -->
+      <div class="overlay" id="overlay"></div>
 
       <!-- LEFT: search, filters, about -->
-      <aside class="left" aria-label="blog controls">
+      <aside class="left" aria-label="blog controls" id="sidebar">
+        <button class="close-sidebar" id="closeSidebar" aria-label="Close sidebar">
+          <i class="fas fa-times"></i>
+        </button>
+        
         <h3>Search & Filters</h3>
         <div class="search">
-          <input id="q" placeholder="Search posts, keywords, methods (e.g. 'LSTM', 'MRI')" />
-          <button id="clear" class="reset">Clear</button>
+          <input id="q" placeholder="Search posts, keywords, methods..." />
+          <button id="clear" class="reset" aria-label="Clear search"><i class="fas fa-times"></i></button>
         </div>
 
         <div class="filters" id="filters"></div>
 
         <div class="meta">
           <strong>How this blog works:</strong>
-          <p class="small">Posts are short research updates, experiments, and tutorials. Click a post to read the full entry. Add new entries by editing the `posts` array in the bottom of this file.</p>
+          <p class="small">Posts are short research updates, experiments, and tutorials. Click a post to read the full entry.</p>
         </div>
 
-        <hr style="border:none; border-top:1px solid #f0f0f0; margin:12px 0">
+        <hr style="border:none; border-top:1px solid #eee; margin:1.2rem 0">
 
         <h3>Quick links</h3>
-        <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem">
-          <a class="small" href="cv.html">→ View CV</a>
-          <a class="small" href="index.html#research">→ Research (home)</a>
-          <a class="small" href="mailto:r.chua.imail@gmail.com" target="_blank">→ Email</a>
+        <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:.8rem">
+          <a class="small" href="cv.html"><i class="fas fa-file-alt"></i> View CV</a>
+          <a class="small" href="index.html#research"><i class="fas fa-flask"></i> Research (home)</a>
+          <a class="small" href="mailto:r.chua.imail@gmail.com" target="_blank"><i class="fas fa-envelope"></i> Email</a>
         </div>
       </aside>
 
@@ -156,7 +358,11 @@
         <!-- Read / article view -->
         <div id="readView" class="article" style="display:none"></div>
 
-        <div id="empty" class="empty" style="display:none">No posts found.</div>
+        <div id="empty" class="empty" style="display:none">
+          <i class="fas fa-search"></i>
+          <h3>No posts found</h3>
+          <p>Try adjusting your search or filters</p>
+        </div>
 
       </section>
     </div>
@@ -178,32 +384,105 @@
         id: "2025-09-05-myocardial-fibrosis",
         title: "Project Diary — 3D One-Shot Model for Myocardial Fibrosis Segmentation (MRI)",
         date: "2025-09-05",
-        tags: ["medical-imaging","computer-vision","deep-learning","research-update"],
-        summary: "Starting a 3D one-shot deep learning pipeline to detect and segment myocardial fibrosis from LGE CMR scans. Current stage: pretraining tests on mixed public datasets (nrrd).",
+        tags: ["medical-imaging", "computer-vision", "deep-learning", "research-update", "PyTorch", "3D-CNN"],
+        summary: "Building a 3D one-shot deep learning pipeline to detect and segment myocardial fibrosis from LGE CMR scans. Current stage: pretraining tests on mixed public datasets (nrrd).",
         thumbnail: "assets/images/blog_mri_thumb.jpg",
         hero: "assets/images/blog_mri_hero.jpg",
         contentHTML: `
-          <p class="lead"><strong>5 September 2025 — project notes</strong></p>
+          <span class="date"><i class="far fa-calendar"></i> September 5, 2025</span>
+          <h2>Project Diary — 3D One-Shot Model for Myocardial Fibrosis Segmentation (MRI)</h2>
+          <p class="lead">Building a specialized 3D deep learning model for detecting myocardial fibrosis in cardiac MRI scans using a one-shot learning approach.</p>
+          
+          <div class="meta">
+            <span class="reading-time"><i class="far fa-clock"></i> 8 min read</span>
+            <span>By Reyence Chua</span>
+          </div>
 
-          <p>Short version: I'm building a <strong>3D one-shot deep learning</strong> model to auto-detect and segment <strong>myocardial fibrosis</strong> on late-gadolinium enhancement (LGE) cardiac MRI. I'm currently in the <em>pretraining / test</em> stage — lots of broken pipelines, shape mismatches, and crashes, but the signal is promising and the problem is worth chasing.</p>
+          <img class="hero" src="assets/images/blog_mri_hero.jpg" alt="Cardiac MRI visualization" loading="lazy" />
 
-          <h3>Why this problem?</h3>
-          <p>I started browsing open datasets on Kaggle and other challenge portals to broaden my work from pure NLP into computer vision. Several medical imaging datasets (heart and brain) caught my eye. After reading literature on difficult-to-detect anomalies in cardiac scans, myocardial fibrosis stood out: it is clinically important, and segmentation can be subtle depending on acquisition and contrast timing.</p>
+          <div class="content">
+            <p><strong>Short version:</strong> I'm building a <strong>3D one-shot deep learning</strong> model to auto-detect and segment <strong>myocardial fibrosis</strong> on late-gadolinium enhancement (LGE) cardiac MRI. I'm currently in the <em>pretraining / test</em> stage — lots of broken pipelines, shape mismatches, and crashes, but the signal is promising and the problem is worth chasing.</p>
+
+            <h3>Why this problem?</h3>
+            <p>I started browsing open datasets on Kaggle and other challenge portals to broaden my work from pure NLP into computer vision. Several medical imaging datasets (heart and brain) caught my eye. After reading literature on difficult-to-detect anomalies in cardiac scans, myocardial fibrosis stood out: it is clinically important, and segmentation can be subtle depending on acquisition and contrast timing.</p>
+
+            <h3>Technical Approach</h3>
+            <p>My implementation uses a specialized 3D convolutional neural network with several key components:</p>
             
-          <h3>Notes / tools</h3>
-          <p>I’m using <strong>Python</strong>, and PyTorch. Code will be pushed to my GitHub project repo once the pretraining pipeline stabilizes.</p>
+            <ul>
+              <li><strong>MPS-Compatible 3D Convolutions:</strong> Custom implementation that works efficiently across different hardware (CUDA, MPS for Apple Silicon, CPU)</li>
+              <li><strong>One-Shot Learning:</strong> The model uses a hypernetwork to generate weights conditioned on a single example</li>
+              <li><strong>Memory Optimization:</strong> Implemented gradient checkpointing and factorized convolutions to handle large 3D volumes</li>
+              <li><strong>Advanced Loss Functions:</strong> Using a combination of Focal Tversky loss and Dice loss to handle class imbalance</li>
+            </ul>
 
-    
+            <h3>Data Pipeline</h3>
+            <p>The data processing pipeline includes several sophisticated components:</p>
+            
+            <pre><code># Enhanced data loading with caching and preprocessing
+class CardiacFibrosisDataset(Dataset):
+    def __init__(self, data_paths, mode="pre", augment=True, 
+                 target_size=(128, 128, 32), skip_invalid=True,
+                 clip_low_percentile=1, clip_high_percentile=99):
+        # Implementation includes:
+        # - NRRD file loading with header caching
+        # - Intensity clipping based on percentiles
+        # - 3D data augmentation (rotation, flipping, contrast adjustment)
+        # - Smart resizing with preservation of aspect ratios
+        pass</code></pre>
+
+            <h3>Model Architecture</h3>
+            <p>The core model implements several innovative techniques:</p>
+            
+            <pre><code># Core model definition
+class CardiacFibrosisSegmentationModel(nn.Module):
+    def __init__(self, in_channels=1, out_channels=1, base_channels=16, 
+                 condition_size=128, use_factorization=True, use_checkpoint=True):
+        # Key components:
+        # - MPS-compatible 3D convolutions with factorization
+        # - Rapid generalization blocks with sparse attention
+        # - Condition encoding for one-shot learning
+        # - Neural super-resolution for input enhancement
+        # - Memory-efficient skip connections
+        pass</code></pre>
+
+            <h3>Current Status & Challenges</h3>
+            <p>Right now I have data loaders that read <code>.nrrd</code> stacks and produce standardized tensors. Common issues I've hit so far:</p>
+            
+            <ul>
+              <li>Axis ordering inconsistencies between datasets (x/y/z vs z/y/x). Solved by a consistent header mapping step.</li>
+              <li>Intensity distributions vary widely due to scanner/sequence differences — experimenting with percentile clipping + histogram matching.</li>
+              <li>GPU memory limits on 3D volumes — using patch-based training and gradient accumulation to mimic larger batches.</li>
+            </ul>
+
+            <h3>Initial Results</h3>
+            <p>Small wins already: a simple 3D UNet trained on synthetic lesions transfers better after contrastive pretraining than a randomly initialized one. I still need to quantify DSC/IoU vs a small held-out annotated set.</p>
+
+            <h3>Next Steps</h3>
+            <ul>
+              <li>Finalize a robust preprocessing pipeline (resampling + intensity harmonization)</li>
+              <li>Implement contrastive pretraining tasks and run a baseline one-shot fine tuning experiment</li>
+              <li>Create clear evaluation scripts (per-volume and per-lesion metrics)</li>
+              <li>Document dataset licenses & provenance to ensure compliance if eventually shared</li>
+            </ul>
+
+            <h3>Tools & Technologies</h3>
+            <p>I'm using <strong>Python</strong>, PyTorch, and nibabel/nrrd utilities for IO. The implementation includes custom CUDA/MPS optimizations for efficient 3D convolution operations. Code will be pushed to my GitHub project repo once the pretraining pipeline stabilizes.</p>
+
+            <p>I'll post follow-up notes as experiments progress. If you have pointers to robust LGE CMR public data or preprocessing pipelines, ping me — collaboration or pointers are greatly appreciated.</p>
+          </div>
+
           <div class="tags">
             <span class="tag">medical-imaging</span>
             <span class="tag">LGE CMR</span>
             <span class="tag">3D-CV</span>
             <span class="tag">one-shot</span>
             <span class="tag">PyTorch</span>
+            <span class="tag">cardiology</span>
           </div>
         `
       }
-      
+
       /* ------------------------------------------------------------------
         Add more post objects here following the same shape:
         {
@@ -220,7 +499,7 @@
     ];
 
     /***********************
-     * Simple Blog Renderer
+     * Enhanced Blog Renderer
      ***********************/
     const listView = document.getElementById('listView');
     const readView = document.getElementById('readView');
@@ -228,9 +507,57 @@
     const searchInput = document.getElementById('q');
     const emptyEl = document.getElementById('empty');
     const clearBtn = document.getElementById('clear');
+    const themeToggle = document.getElementById('themeToggle');
+    const mobileFilterToggle = document.getElementById('mobileFilterToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const closeSidebar = document.getElementById('closeSidebar');
+
+    // Theme toggle functionality
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        document.body.classList.remove('dark-mode');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      if (document.body.classList.contains('dark-mode')) {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      } else {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      }
+    });
+
+    // Mobile sidebar functionality
+    mobileFilterToggle.addEventListener('click', () => {
+      sidebar.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeSidebar.addEventListener('click', closeMobileSidebar);
+    overlay.addEventListener('click', closeMobileSidebar);
+
+    function closeMobileSidebar() {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
 
     // Utility: format date -> readable
-    function niceDate(iso){ const d=new Date(iso); return d.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }) }
+    function niceDate(iso){ 
+      const d = new Date(iso); 
+      return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) 
+    }
 
     // reading time estimator
     function readingTimeFromHTML(html){
@@ -241,7 +568,7 @@
     }
 
     // collect all tags
-    const allTags = Array.from(new Set(posts.flatMap(p=>p.tags))).sort();
+    const allTags = Array.from(new Set(posts.flatMap(p => p.tags))).sort();
 
     // render filter chips
     function renderFilters(){
@@ -249,93 +576,131 @@
       const allChip = document.createElement('div');
       allChip.className = 'chip active';
       allChip.textContent = 'All';
-      allChip.onclick = ()=>{ document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active')); allChip.classList.add('active'); renderList(); }
+      allChip.onclick = () => { 
+        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active')); 
+        allChip.classList.add('active'); 
+        renderList(); 
+        closeMobileSidebar();
+      }
       filtersEl.appendChild(allChip);
-      allTags.forEach(t=>{
+      
+      allTags.forEach(t => {
         const c = document.createElement('div');
         c.className = 'chip';
         c.textContent = t;
-        c.onclick = ()=>{
-          document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+        c.onclick = () => {
+          document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
           c.classList.add('active');
           renderList(t);
+          closeMobileSidebar();
         };
         filtersEl.appendChild(c);
       });
     }
 
     // render card list
-    function renderList(activeTag=null, query=''){
+    function renderList(activeTag = null, query = ''){
       listView.innerHTML = '';
-      readView.style.display='none';
-      emptyEl.style.display='none';
+      readView.style.display = 'none';
+      emptyEl.style.display = 'none';
 
       const q = (query || '').trim().toLowerCase();
       const filtered = posts
-        .filter(p => !activeTag || activeTag==='All' || p.tags.includes(activeTag))
+        .filter(p => !activeTag || activeTag === 'All' || p.tags.includes(activeTag))
         .filter(p => {
           if(!q) return true;
           return (p.title + ' ' + p.summary + ' ' + p.tags.join(' ')).toLowerCase().includes(q);
         })
-        .sort((a,b)=> b.date.localeCompare(a.date));
+        .sort((a, b) => b.date.localeCompare(a.date));
 
-      if(filtered.length===0){
-        emptyEl.style.display='block';
+      if(filtered.length === 0){
+        emptyEl.style.display = 'block';
         return;
       }
 
       filtered.forEach(p => {
         const el = document.createElement('article');
-        el.className='card';
+        el.className = 'card';
         el.innerHTML = `
-          <img src="${p.thumbnail||'assets/images/blog_placeholder.jpg'}" alt="${p.title} thumbnail" loading="lazy" />
-          <div>
-            <h4><a href="#" data-id="${p.id}">${p.title}</a></h4>
-            <p>${p.summary}</p>
-            <div class="meta">${niceDate(p.date)} • <span class="small">${p.tags.join(', ')}</span>
-              <span class="reading-time">• ${readingTimeFromHTML(p.contentHTML)}</span>
+          <div class="card-content">
+            <img src="${p.thumbnail || 'assets/images/blog_placeholder.jpg'}" alt="${p.title} thumbnail" loading="lazy" />
+            <div class="card-text">
+              <h4>${p.title}</h4>
+              <p>${p.summary}</p>
+              <div class="meta-info">
+                <span><i class="far fa-calendar"></i> ${niceDate(p.date)}</span>
+                <span class="reading-time"><i class="far fa-clock"></i> ${readingTimeFromHTML(p.contentHTML)}</span>
+                <span class="tag">${p.tags[0]}</span>
+              </div>
             </div>
           </div>
         `;
         listView.appendChild(el);
 
         // click opens read view
-        el.querySelector('a').addEventListener('click', (ev)=>{
-          ev.preventDefault();
-          openPost(p.id);
+        el.addEventListener('click', (ev) => {
+          if (!ev.target.closest('a')) {
+            ev.preventDefault();
+            openPost(p.id);
+          }
         });
       });
     }
 
     // render single post in readView
     function openPost(id){
-      const p = posts.find(x=>x.id===id);
+      const p = posts.find(x => x.id === id);
       if(!p) return;
+      
       readView.style.display = 'block';
       readView.innerHTML = `
-        <div class="small">${niceDate(p.date)} • ${p.tags.join(' • ')} <span class="reading-time">• ${readingTimeFromHTML(p.contentHTML)}</span></div>
-        <h2>${p.title}</h2>
-        <div class="meta">By Reyence Chua</div>
-        ${p.hero ? `<img class="hero" src="${p.hero}" alt="${p.title} hero image" loading="lazy" />` : ''}
-        <div class="content">${p.contentHTML}</div>
-        <div style="margin-top:1rem"><a href="#" id="backToList">← Back to posts</a></div>
+        <a href="#" class="back-button" id="backToList"><i class="fas fa-arrow-left"></i> Back to posts</a>
+        ${p.contentHTML}
       `;
-      document.getElementById('backToList').addEventListener('click', (e)=>{
+      
+      document.getElementById('backToList').addEventListener('click', (e) => {
         e.preventDefault();
-        readView.style.display='none';
+        readView.style.display = 'none';
+        window.scrollTo({top: 0, behavior: 'smooth'});
       });
-      window.scrollTo({top:0, behavior:'smooth'});
+      
+      window.scrollTo({top: 0, behavior: 'smooth'});
+      
+      // Update URL without page reload
+      history.pushState(null, null, `#${id}`);
     }
+
+    // Handle browser back button
+    window.addEventListener('popstate', () => {
+      if (!location.hash) {
+        readView.style.display = 'none';
+      } else {
+        const id = location.hash.slice(1);
+        const exists = posts.find(p => p.id === id);
+        if (exists) openPost(id);
+      }
+    });
 
     // wire search
     let searchTimer = null;
-    searchInput.addEventListener('input', ()=>{
+    searchInput.addEventListener('input', () => {
       clearTimeout(searchTimer);
-      searchTimer = setTimeout(()=>{ renderList(document.querySelector('.chip.active')?.textContent==='All' ? null : document.querySelector('.chip.active')?.textContent, searchInput.value); }, 180);
+      searchTimer = setTimeout(() => { 
+        const activeChip = document.querySelector('.chip.active');
+        renderList(
+          activeChip?.textContent === 'All' ? null : activeChip?.textContent, 
+          searchInput.value
+        ); 
+      }, 300);
     });
-    clearBtn.addEventListener('click', ()=>{ searchInput.value=''; renderList(); });
+    
+    clearBtn.addEventListener('click', () => { 
+      searchInput.value = ''; 
+      renderList(); 
+    });
 
     // initial render
+    initTheme();
     renderFilters();
     renderList();
 
@@ -343,7 +708,7 @@
     (function openFromHash(){
       const id = location.hash?.slice(1);
       if(id){
-        const exists = posts.find(p=>p.id===id);
+        const exists = posts.find(p => p.id === id);
         if(exists) openPost(id);
       }
     })();
