@@ -49,7 +49,7 @@
     /* Top nav */
     .nav {
       display: flex; align-items: center; justify-content: space-between;
-      max-width: var(--max); margin: 1.1rem auto; padding: 0.4rem 1.2rem;
+      max-width: var(--max); margin: 1.1rem auto; padding: 0.8rem 1.5rem;
       background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow-sm);
     }
     .nav .brand { font-weight: 700; font-size: 1.1rem; }
@@ -79,16 +79,12 @@
     /* Hero section */
     .hero {
       background: linear-gradient(135deg, #4f00bc, #29abe2);
-      color: #fff; padding: 2.5rem; border-radius: var(--radius); margin-bottom: 2rem;
+      color: #fff; padding: 2rem; border-radius: var(--radius); margin-bottom: 2rem;
       box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" stroke="white" stroke-width="2" fill="none" /></svg>');
-      background-size: 120px 120px;
+      text-align: center;
     }
     .hero h1 { margin: 0 0 0.5rem 0; font-size: 1.8rem; font-weight: 700; position: relative; }
-    .hero p { margin: 0; color: rgba(255,255,255,0.9); font-size: 1.05rem; position: relative; max-width: 600px; }
+    .hero p { margin: 0; color: rgba(255,255,255,0.9); font-size: 1.05rem; position: relative; max-width: 600px; margin: 0 auto; }
 
     /* Layout: sidebar + content on wide screens */
     .layout { 
@@ -96,7 +92,7 @@
       position: relative;
     }
     @media(min-width: 980px) { 
-      .layout { grid-template-columns: 320px 1fr; } 
+      .layout { grid-template-columns: 280px 1fr; } 
     }
 
     /* Mobile filter toggle */
@@ -137,16 +133,16 @@
     .left h3 { margin: 0 0 1rem 0; font-size: 1.2rem; font-weight: 600; }
     .search { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; position: relative; }
     .search input { 
-      flex: 1; padding: 0.75rem 1rem; border-radius: var(--radius-sm); 
-      border: 1px solid #eee; font-size: 0.95rem; background: var(--bg);
+      flex: 1; padding: 0.6rem 1rem; border-radius: var(--radius-sm); 
+      border: 1px solid #eee; font-size: 0.9rem; background: var(--bg);
       color: var(--ink); box-shadow: var(--shadow-sm);
     }
-    .search input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(41, 171, 226, 0.2); }
+    .search input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(41, 171, 226, 0.2); }
     .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
     .chip { 
-      padding: 0.4rem 0.9rem; border-radius: 999px; background: #f2f8ff; 
+      padding: 0.3rem 0.8rem; border-radius: 999px; background: #f2f8ff; 
       color: var(--accent); font-weight: 500; border: 1px solid rgba(41,171,226,.15); 
-      cursor: pointer; font-size: 0.9rem; transition: var(--transition);
+      cursor: pointer; font-size: 0.85rem; transition: var(--transition);
     }
     .chip:hover { background: #e6f3ff; }
     .chip.active { background: var(--accent); color: #fff; border-color: transparent; }
@@ -155,37 +151,40 @@
     .meta p { margin-bottom: 0.8rem; }
 
     /* Post list */
-    .posts { display: flex; flex-direction: column; gap: 1.5rem; }
+    .posts { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem; 
+    }
     .card {
-      background: var(--card); padding: 1.5rem; border-radius: var(--radius); 
-      display: flex; flex-direction: column; gap: 1.2rem; box-shadow: var(--shadow-sm);
+      background: var(--card); padding: 1.2rem; border-radius: var(--radius); 
+      display: flex; flex-direction: column; gap: 1rem; box-shadow: var(--shadow-sm);
       transition: var(--transition); border: 1px solid rgba(0,0,0,0.05);
+      height: 100%;
     }
     .card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
-    .card-content { display: flex; gap: 1.5rem; }
-    .card img { 
-      width: 140px; height: 100px; object-fit: cover; border-radius: var(--radius-sm);
-      flex-shrink: 0;
+    .card-image { 
+      width: 100%; height: 180px; overflow: hidden; border-radius: var(--radius-sm);
+      position: relative;
     }
+    .card img { 
+      width: 100%; height: 100%; object-fit: cover; transition: var(--transition);
+    }
+    .card:hover img { transform: scale(1.05); }
     .card-text { flex: 1; }
     .card h4 { 
-      margin: 0 0 0.5rem 0; font-size: 1.2rem; font-weight: 600; 
+      margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600; 
       line-height: 1.4; display: -webkit-box;
       -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
-    .card p { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+    .card p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
     .card .meta-info { 
       display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
       margin-top: 0.8rem; font-size: 0.85rem; color: var(--muted);
     }
     .card .tag { 
-      padding: 0.25rem 0.6rem; border-radius: 4px; background: #f0f6fb; 
-      color: var(--accent); font-weight: 500; font-size: 0.8rem;
-    }
-
-    @media(max-width: 768px) {
-      .card-content { flex-direction: column; }
-      .card img { width: 100%; height: 180px; }
+      padding: 0.2rem 0.5rem; border-radius: 4px; background: #f0f6fb; 
+      color: var(--accent); font-weight: 500; font-size: 0.75rem;
     }
 
     /* Read view */
@@ -263,6 +262,7 @@
     .empty { 
       text-align: center; color: var(--muted); padding: 3rem 1.2rem; 
       background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow-sm);
+      grid-column: 1 / -1;
     }
     .empty i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
 
@@ -270,6 +270,7 @@
     .mini-footer { 
       text-align: center; color: var(--muted); margin: 3rem 0 2rem; 
       font-size: 0.95rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1);
+      grid-column: 1 / -1;
     }
 
     /* Utility */
@@ -364,10 +365,10 @@
           <p>Try adjusting your search or filters</p>
         </div>
 
+        <div class="mini-footer">© 2025 Reyence Chua — AI & STEM blog</div>
       </section>
     </div>
 
-    <div class="mini-footer">© 2025 Reyence Chua — AI & STEM blog</div>
   </main>
 
   <script>
@@ -622,16 +623,16 @@ class CardiacFibrosisSegmentationModel(nn.Module):
         const el = document.createElement('article');
         el.className = 'card';
         el.innerHTML = `
-          <div class="card-content">
+          <div class="card-image">
             <img src="${p.thumbnail || 'assets/images/blog_placeholder.jpg'}" alt="${p.title} thumbnail" loading="lazy" />
-            <div class="card-text">
-              <h4>${p.title}</h4>
-              <p>${p.summary}</p>
-              <div class="meta-info">
-                <span><i class="far fa-calendar"></i> ${niceDate(p.date)}</span>
-                <span class="reading-time"><i class="far fa-clock"></i> ${readingTimeFromHTML(p.contentHTML)}</span>
-                <span class="tag">${p.tags[0]}</span>
-              </div>
+          </div>
+          <div class="card-text">
+            <h4>${p.title}</h4>
+            <p>${p.summary}</p>
+            <div class="meta-info">
+              <span><i class="far fa-calendar"></i> ${niceDate(p.date)}</span>
+              <span class="reading-time"><i class="far fa-clock"></i> ${readingTimeFromHTML(p.contentHTML)}</span>
+              <span class="tag">${p.tags[0]}</span>
             </div>
           </div>
         `;
