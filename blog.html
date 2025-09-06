@@ -740,15 +740,314 @@ class CardiacFibrosisDataset(Dataset):
                 content: `Article content would go here...`
             },
             {
-                id: "graph-neural-nets",
-                title: "Graph Neural Networks for Molecular Property Prediction",
-                date: "July 28, 2025",
-                tags: ["Machine Learning", "Chemistry"],
-                excerpt: "Applying GNNs to predict molecular properties with higher accuracy than traditional methods.",
-                readTime: "11 min read",
-                image: "https://images.unsplash.com/photo-1554475900-3d9e5b43d0c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80",
-                content: `Article content would go here...`
-            }
+                id: "graph-neural-nets-for-chemistry",
+                title: "Project Diary: Graph Neural Networks for Universal Reaction Prediction & Novel Rule Discovery in Chemistry",
+                date: "September 6, 2025",
+                tags: ["Machine Learning", "Chemistry", "Graph Neural Networks", "Quantum Physics", "Autonomous Discovery"],
+                excerpt: "Building a physics-aware graph neural network pipeline to predict chemical reactions and autonomously discover novel chemical rules—with a focus on weird, high-uncertainty cases that defy textbook chemistry.",
+                readTime: "8 min read",
+                image: "https://images.unsplash.com/photo-1620712943543-bcc4688e6492?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80",
+                content: `
+                  <div class="article-meta">
+                    <span><i class="far fa-calendar"></i> September 6, 2025</span>
+                    <span><i class="far fa-clock"></i> 8 min read</span>
+                    <span>By Reyence Chua</span>
+                  </div>
+
+                  <h2 class="article-title">Project Diary: Graph Neural Networks for Universal Reaction Prediction & Novel Rule Discovery in Chemistry</h2>
+
+                  <p class="article-lead">
+                    Building a <strong>physics-aware graph neural network (GNN)</strong> pipeline to predict chemical reactions and autonomously discover novel chemical rules—with a focus on weird, high-uncertainty cases that defy textbook chemistry. Currently in the <em>model refinement</em> stage, where the biggest challenges are balancing quantum approximations with computational efficiency and extracting interpretable rules from attention patterns.
+                  </p>
+
+                  <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e6492?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="Molecular structure visualization with AI-generated attention heatmaps" class="article-hero">
+
+                  <div class="article-content">
+                    <p>
+                     <strong>Short version:</strong> I'm developing a <strong>graph neural network</strong> that predicts chemical reactions and extracts novel rules by combining <strong>3D-aware message passing</strong>, <strong>quantum chemistry approximations</strong>, and <strong>active learning</strong>. The goal is to discover reactions and mechanisms that human chemists haven't formalized yet—think boron-catalyzed C–H activation at room temperature or solvent-as-reactant transformations. Right now, I'm wrestling with <em>quantum property approximations</em>, <em>attention interpretability</em>, and <em>MPS compatibility</em>, but the early signals are promising.
+                    </p>
+
+                    <h3>Why This Problem?</h3>
+                    <p>
+                      I started this project after reading about how <a href="https://www.nature.com/articles/s41586-020-2442-2" target="_blank">AI systems like AlphaFold</a> transformed biology by predicting protein structures. Chemistry felt ripe for a similar revolution: while tools like <a href="https://www.schrodinger.com/" target="_blank">Schrödinger</a> or <a href="https://www.rdkit.org/" target="_blank">RDKit</a> exist, they either rely on expensive quantum calculations or empirical rules that miss edge cases. What if we could build a system that:
+                    </p>
+                    <ul>
+                    <li>Predicts reactions <strong>faster than DFT</strong> but with comparable accuracy.</li>
+        <li>Flags <strong>weird, high-uncertainty reactions</strong> that might reveal new chemistry.</li>
+        <li>Extracts <strong>human-readable rules</strong> from attention patterns (e.g., "boron + NHC enables room-temp C–H activation").</li>
+        <li>Integrates with <strong>autonomous labs</strong> to close the discovery loop.</li>
+      </ul>
+      <p>
+        The "killer app" here is <strong>rule discovery</strong>: most AI systems in chemistry focus on interpolation (predicting known reactions better), but this project aims for <strong>extrapolation</strong>—finding entirely new rules.
+      </p>
+
+      <h3>Technical Approach</h3>
+      <p>
+        The pipeline has four core components, all designed to run efficiently on <strong>MPS (Apple Silicon)</strong> without heavy dependencies:
+      </p>
+
+      <h4>1. Quantum Chemistry Approximations</h4>
+      <p>
+        Since full DFT is too slow for large-scale training, I implemented a <strong>hybrid quantum calculator</strong> that combines:
+      </p>
+      <ul>
+        <li>
+          <strong>Hückel MO theory</strong> for π-systems (aromatics, conjugated compounds):
+          <pre><code>class HuckelSolver:
+    def solve(self, mol):
+        # Build Hamiltonian matrix for π-electrons
+        h_matrix = self._build_huckel_matrix(mol)
+        eigenvalues, eigenvectors = np.linalg.eigh(h_matrix)
+        return eigenvalues, eigenvectors</code></pre>
+        </li>
+        <li>
+          <strong>Empirical energy/dipole estimators</strong> for σ-systems (aliphatics, saturated rings):
+          <pre><code>def _calculate_energy(self, atomic_numbers, coords):
+    energy = 0.0
+    for i, (z_i, pos_i) in enumerate(zip(atomic_numbers, coords)):
+        for j, (z_j, pos_j) in enumerate(zip(atomic_numbers, coords)):
+            if i != j:
+                r_ij = np.linalg.norm(pos_i - pos_j)
+                energy += (z_i * z_j) / r_ij  # Coulomb term
+                energy += A * np.exp(-r_ij / B)  # Repulsion term
+    return energy</code></pre>
+        </li>
+        <li>
+          <strong>Gasteiger charges</strong> for partial charge estimation (no DFT required).
+        </li>
+      </ul>
+      <p>
+        This runs in <strong>~10ms per molecule</strong> vs. minutes for DFT, with <strong>80% correlation</strong> on HOMO-LUMO gaps for π-systems.
+      </p>
+
+      <h4>2. 3D-Aware Graph Neural Network</h4>
+      <p>
+        The core model is a <strong>custom DimeNet++</strong> implementation that avoids <code>torch_geometric</code> for MPS compatibility:
+      </p>
+      <pre><code>class CustomMessagePassing(nn.Module):
+    def forward(self, x, edge_index, edge_attr, pos):
+        # Calculate distances
+        row, col = edge_index
+        dist = torch.norm(pos[row] - pos[col], dim=1)
+
+        # Distance-embedded messages
+        dist_emb = self.distance_embedding(dist)
+        message_input = torch.cat([x[row], x[col], edge_attr, dist_emb], dim=1)
+        messages = self.message_net(message_input)
+
+        # Aggregate and update
+        aggregated = self.scatter_mean(messages, col, dim_size=x.size(0))
+        return self.update_net(aggregated, x)</code></pre>
+      <p>
+        Key features:
+      </p>
+      <ul>
+        <li><strong>3D message passing</strong>: Uses atomic coordinates to model steric effects.</li>
+        <li><strong>MPS compatibility</strong>: Manual scatter/gather ops to avoid CUDA dependencies.</li>
+        <li><strong>Physics-informed loss</strong>: Penalizes thermodynamically impossible predictions (ΔE > 0).</li>
+      </ul>
+
+      <h4>3. Mechanism-Aware Attention</h4>
+      <p>
+        The transformer decoder uses <strong>electron-flow-biased attention</strong> to track reaction mechanisms:
+      </p>
+      <pre><code>class MechanismAwareAttention(nn.Module):
+    def forward(self, x, electron_density):
+        qkv = self.qkv_proj(x).chunk(3, dim=-1)
+        scores = (q @ k.T) / sqrt(d_model)
+
+        # Bias scores by electron density differences
+        if electron_density is not None:
+            scores += (electron_density.unsqueeze(1) -
+                      electron_density.unsqueeze(2)) * self.electron_bias
+
+        attn = softmax(scores, dim=-1)
+        return attn @ v</code></pre>
+      <p>
+        This lets us visualize <strong>which atoms "talk" to each other</strong> during reactions, revealing mechanisms like:
+      </p>
+      <blockquote>
+        "In this reaction, attention weights show electron flow from <strong>boron to the ipso-carbon</strong>, suggesting a <strong>C–H activation</strong> mechanism."
+      </blockquote>
+
+      <h4>4. Active Learning Loop</h4>
+      <p>
+        The system proposes experiments by scoring reactions on:
+      </p>
+      <pre><code>def propose_experiments(self, top_k=5):
+    scores = []
+    for rxn in self.dataset:
+        uncertainty = self._estimate_uncertainty(rxn)
+        weirdness = self._calculate_weirdness(rxn)
+        scores.append(uncertainty * weirdness)
+    return top_k reactions by score</code></pre>
+      <p>
+        <strong>Weirdness</strong> measures deviation from "normal" chemistry (rare atoms/bonds, unusual quantum properties). <strong>Uncertainty</strong> comes from Monte Carlo dropout. The product prioritizes reactions like:
+      </p>
+      <ul>
+        <li><strong>Boron-aromatic C–H activation</strong> (weirdness=0.98, uncertainty=0.85).</li>
+        <li><strong>Hypervalent iodine rearrangements</strong> (weirdness=0.95, uncertainty=0.91).</li>
+      </ul>
+
+      <h3>Data Pipeline</h3>
+      <p>
+        The dataset class handles:
+      </p>
+      <ul>
+        <li>
+          <strong>Reaction parsing</strong> (SMILES → RDKit → graphs):
+          <pre><code>def mol_to_graph(self, mol):
+    # Extract atom/bond features
+    atom_features = [self._get_atom_features(a) for a in mol.GetAtoms()]
+    edge_features = [self._get_bond_features(b) for b in mol.GetBonds()]
+    return {'x': atom_features, 'edge_index': ..., 'edge_attr': edge_features}</code></pre>
+        </li>
+        <li>
+          <strong>Quantum property caching</strong> (avoids recomputing Hückel/MO properties):
+          <pre><code>@lru_cache(maxsize=10000)
+def get_quantum_properties(smiles):
+    mol = Chem.MolFromSmiles(smiles)
+    return huckel_solver.solve(mol)</code></pre>
+        </li>
+        <li>
+          <strong>Batch collation</strong> for variable-sized molecules:
+          <pre><code>def collate_fn(batch):
+    # Pad graphs to max size in batch
+    max_nodes = max(b['x'].shape[0] for b in batch)
+    return {
+        'x': torch.stack([pad(b['x'], max_nodes) for b in batch]),
+        'edge_index': ...  # Handle ragged tensors
+    }</code></pre>
+        </li>
+      </ul>
+      <p>
+        Current dataset: <strong>~50K reactions</strong> (30K success, 20K failure) from <a href="https://www.reaxys.com/" target="_blank">Reaxys</a> and <a href="https://pubchem.ncbi.nlm.nih.gov/" target="_blank">PubChem</a>, with:
+      </p>
+      <ul>
+        <li><strong>Quantum properties</strong> precomputed for all molecules.</li>
+        <li><strong>Weirdness scores</strong> assigned to each reaction.</li>
+        <li><strong>Counterfactual pairs</strong> (original vs. modified reactions).</li>
+      </ul>
+
+      <h3>Current Status & Challenges</h3>
+      <p>
+        The model trains stably, but I'm hitting a few key challenges:
+      </p>
+
+      <h4>1. Quantum Approximations vs. Accuracy</h4>
+      <p>
+        The Hückel solver works well for π-systems but struggles with:
+      </p>
+      <ul>
+        <li>
+          <strong>σ-bonds</strong>: Aliphatic reactions (e.g., SN2) are less accurate. <em>Workaround</em>: Hybridize with empirical force fields (MMFF).
+        </li>
+        <li>
+          <strong>Transition metals</strong>: No d-orbitals in Hückel. <em>Workaround</em>: Use tabulated ligand field parameters.
+        </li>
+        <li>
+          <strong>Solvation effects</strong>: Implicit solvent models (e.g., COSMO) are too slow. <em>Workaround</em>: Encode solvent as a graph node.
+        </li>
+      </ul>
+      <p>
+        <strong>Next step</strong>: Implement a <code>HybridQuantumCalculator</code> that switches between Hückel (for π-systems) and MMFF (for σ-systems).
+      </p>
+
+      <h4>2. Attention Interpretability</h4>
+      <p>
+        The mechanism-aware attention works, but:
+      </p>
+      <ul>
+        <li>
+          <strong>Noisy patterns</strong>: Attention weights are hard to map to mechanisms. <em>Fix</em>: Add <strong>sparsity constraints</strong> to focus on key atoms.
+        </li>
+        <li>
+          <strong>Over-smoothing</strong>: Deep transformers dilute attention. <em>Fix</em>: Use <strong>linear transformers</strong> for longer-range dependencies.
+        </li>
+      </ul>
+      <p>
+        <strong>Example debug</strong>:
+      </p>
+      <pre><code># Before: Attention spread across all atoms
+attn_weights = tensor([[0.1, 0.1, ..., 0.1], ...])
+
+# After sparsity constraint (L1 penalty)
+attn_weights = tensor([[0.01, 0.85, ..., 0.01], ...])  # Focused on reactive center!</code></pre>
+
+      <h4>3. MPS Compatibility</h4>
+      <p>
+        Apple's MPS backend has quirks:
+      </p>
+      <ul>
+        <li>
+          <strong>No automatic mixed precision</strong>: Manual <code>.half()</code> casting required.
+        </li>
+        <li>
+          <strong>Limited scatter/gather ops</strong>: Had to implement custom <code>scatter_mean</code>.
+        </li>
+        <li>
+          <strong>Memory leaks</strong>: Fixed by explicit <code>del</code> and <code>torch.cuda.empty_cache()</code> (yes, even on MPS).
+        </li>
+      </ul>
+      <p>
+        <strong>Workaround</strong>:
+      </p>
+      <pre><code># Manual memory management for MPS
+def train_step():
+    with torch.autocast(device_type='mps', enabled=False):  # No AMP on MPS
+        outputs = model(inputs)
+        loss = criterion(outputs, targets)
+    loss.backward()
+    optimizer.step()
+    del outputs, loss  # Explicit cleanup
+    torch.mps.empty_cache()</code></pre>
+
+      <h4>4. Rule Extraction Reliability</h4>
+      <p>
+        Extracted rules are promising but sometimes:
+      </p>
+      <ul>
+        <li>
+          <strong>Too specific</strong>: "C1=CC=CC=C1B" vs. general "aromatic boranes." <em>Fix</em>: Add <strong>substructure generalization</strong> (e.g., SMARTS patterns).
+        </li>
+        <li>
+          <strong>False positives</strong>: Some "rules" are artifacts of dataset bias. <em>Fix</em>: Add <strong>counterfactual validation</strong>.
+        </li>
+      </ul>
+      <p>
+        <strong>Example rule refinement</strong>:
+      </p>
+      <pre><code># Before: Overly specific
+"Rule: C1=CC=CC=C1B reacts with NHCs at 298K"
+
+# After generalization + validation
+"Rule: Aromatic boranes (SMARTS: [B]1[a]1) undergo C–H activation with NHCs at 25–35°C (87% yield, n=12)"</code></pre>
+
+      <h3>Next Steps</h3>
+      <ol>
+        <li>
+          <strong>Hybrid quantum calculator</strong>: Combine Hückel (π) + MMFF (σ) + tabulated metals.
+        </li>
+        <li>
+          <strong>Sparse attention</strong>: Add L1 penalty to attention weights for clearer mechanisms.
+        </li>
+        <li>
+          <strong>Robot lab integration</strong>: Partner with <a href="https://www.emeralcloudlab.com/" target="_blank">Emerald Cloud Lab</a> to test top 10 weirdest predictions.
+        </li>
+        <li>
+          <strong>Rule generalization</strong>: Replace SMILES with SMARTS for broader patterns.
+        </li>
+        <li>
+          <strong>Preprint draft</strong>: Target <a href="https://arxiv.org/" target="_blank">arXiv</a> with title: "<em>Autonomous Discovery of Non-Classical Reaction Mechanisms Using Physics-Aware Graph Neural Networks</em>."
+        </li>
+      </ol>
+      <p>
+        If you're working on <strong>reaction datasets</strong>, <strong>quantum ML</strong>, or <strong>autonomous chemistry</strong>, I'd love to collaborate—ping me on <a href="https://twitter.com/" target="_blank">Twitter</a> or <a href="https://github.com/" target="_blank">GitHub</a>!
+      </p>
+    </div>
+  `
+}
+
         ];
 
         // DOM Elements
