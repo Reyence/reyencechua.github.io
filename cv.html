@@ -78,7 +78,7 @@
         <a href="https://github.com/Reyence" target="_blank" rel="noopener">GitHub</a>
       </div>
       <div class="cv-actions">
-        <button class="cv-btn" onclick="window.print()">Download PDF</button>
+        <button class="cv-btn">Download PDF</button>
         <a class="cv-btn" href="index.html">Back to Home</a>
       </div>
     </header>
@@ -272,6 +272,30 @@
       </div>
     </section>
   </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  // Grab the button you already have
+  const downloadBtn = document.querySelector('.cv-actions .cv-btn');
+
+  downloadBtn.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    // Select the part of the page you want in the PDF
+    const element = document.querySelector('.cv-wrap');
+
+    // Options for the PDF
+    const opt = {
+      margin:       0.5,
+      filename:     'Reyence-Chua-CV.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    // Create and download the PDF
+    html2pdf().from(element).set(opt).save();
+  });
+</script>
 
 </body>
 </html>
