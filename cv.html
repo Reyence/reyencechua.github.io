@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* --- CV-specific styles (keeps your site CSS; adds a crisp CV layout) --- */
     :root { --ink:#111; --muted:#666; --accent:#29abe2; }
     body { background:#ffffff; color:#111; }
     .cv-wrap { max-width: 900px; margin: 0 auto; padding: 2rem 1rem 4rem; }
@@ -20,10 +19,8 @@
     .cv-btn { padding:.55rem .95rem; border-radius:8px; border:1px solid #ddd; background:#f7f7f7; cursor:pointer; font-weight:600; }
     .cv-btn:hover { background:#eaf6ff; border-color:#cde9ff; }
 
-    .cv-grid { display:grid; grid-template-columns: 1fr; gap:1.6rem; }
-    .cv-section { margin-top:.6rem; }
     .cv-section h2 { font-size:1.3rem; margin-bottom:.8rem; border-left:4px solid var(--accent); padding-left:.6rem; }
-    .item { display:grid; grid-template-columns: 1fr auto; gap:.25rem .8rem; padding: .6rem 0; border-bottom:1px dashed #eee; }
+    .item { display:grid; grid-template-columns: 1fr auto; gap:.25rem .8rem; padding:.6rem 0; border-bottom:1px dashed #eee; }
     .item:last-child { border-bottom:none; }
     .role { font-weight:600; }
     .org { color:var(--muted); }
@@ -34,7 +31,6 @@
     .two-col { display:grid; grid-template-columns: 1fr 1fr; gap:1.2rem; }
     @media (max-width: 820px) { .two-col { grid-template-columns:1fr; } }
 
-    /* Print-friendly (for “Download PDF”) */
     @media print {
       .site-nav, .cv-actions { display:none !important; }
       body { background:#fff; }
@@ -42,7 +38,6 @@
       a { color:#111; text-decoration:none; }
     }
 
-    /* Minimal top nav so this page can live standalone too */
     .site-nav {
       width:100%; background:#111; color:#fff;
       display:flex; align-items:center; justify-content:center; gap:1rem;
@@ -54,247 +49,233 @@
 </head>
 <body>
 
-  <!-- Minimal nav (use this OR your site’s existing nav) -->
-  <nav class="site-nav">
-    <a href="index.html">Home</a>
-    <a class="active" href="cv.html">CV</a>
-    <a href="blog.html">Blog</a>
-    <!-- <a href="research.html">Research</a> -->
-  </nav>
+<nav class="site-nav">
+  <a href="index.html">Home</a>
+  <a class="active" href="cv.html">CV</a>
+  <a href="blog.html">Blog</a>
+</nav>
 
-  <main class="cv-wrap">
-    <header class="cv-header">
-      <div class="cv-name">Reyence Chua Rui Heng</div>
-      <div class="cv-tagline">Student Researcher • Violinist • STEM Enthusiast • Rock Climber</div>
-      <div class="cv-contact">
-        <span>Singapore</span>
-        <span>·</span>
-        <a href="mailto:r.chua.imail@gmail.com">r.chua.imail@gmail.com</a>
-        <span>·</span>
-        <a href="mailto:reyence_chua_rui_heng@students.edu.sg">reyence_chua_rui_heng@students.edu.sg</a>
-        <span>·</span>
-        <a href="https://reyence.github.io/reyencechua.github.io/" target="_blank" rel="noopener">Website</a>
-        <span>·</span>
-        <a href="https://github.com/Reyence" target="_blank" rel="noopener">GitHub</a>
+<main class="cv-wrap">
+  <header class="cv-header">
+    <div class="cv-name">Reyence Chua Rui Heng</div>
+    <div class="cv-tagline">Student Researcher • Violinist • STEM Enthusiast • Rock Climber</div>
+    <div class="cv-contact">
+      <span>Singapore</span>·
+      <a href="mailto:r.chua.imail@gmail.com">r.chua.imail@gmail.com</a>·
+      <a href="mailto:reyence_chua_rui_heng@students.edu.sg">reyence_chua_rui_heng@students.edu.sg</a>·
+      <a href="https://reyence.github.io/reyencechua.github.io/" target="_blank">Website</a>·
+      <a href="https://github.com/Reyence" target="_blank">GitHub</a>
+    </div>
+    <div class="cv-actions">
+      <button class="cv-btn">Download PDF</button>
+      <a class="cv-btn" href="index.html">Back to Home</a>
+    </div>
+  </header>
+
+  <section class="cv-section">
+    <h2>Education</h2>
+    <div class="item">
+      <div>
+        <div class="role">Bukit Batok Secondary School</div>
+        <div class="org">Singapore</div>
       </div>
-      <div class="cv-actions">
-        <button class="cv-btn">Download PDF</button>
-        <a class="cv-btn" href="index.html">Back to Home</a>
+      <div class="date">Expected 2026</div>
+      <ul class="bullets">
+        <li>Active in student research groups and showcases (<em>placeholder: add number of showcases later</em>).</li>
+        <li>STEM Overseas Learning Journey to Japan (participant/leader within group initiatives).</li>
+        <li>Led international online collaboration research group (Shiga University–affiliated JHS, Japan) on <strong>Hydroelectricity</strong>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cv-section">
+    <h2>Research Experience</h2>
+    <div class="item">
+      <div>
+        <div class="role">Survey of Multimodal Large Language Models</div>
+        <div class="org">Independent Research</div>
       </div>
-    </header>
+      <div class="date">2025</div>
+      <ul class="bullets">
+        <li>Currently conducting surveys and drafting a synthesis; publication plan in progress (<em>placeholder for stats/publications</em>).</li>
+      </ul>
+    </div>
 
-    <section class="cv-section">
-      <h2>Education</h2>
-      <div class="item">
-        <div>
-          <div class="role">Bukit Batok Secondary School</div>
-          <div class="org">Singapore</div>
-        </div>
-        <div class="date">Expected 2026</div>
-        <ul class="bullets">
-          <li>Active in student research groups and showcases.</li>
-          <li>STEM Overseas Learning Journey to Japan (participant/leader within group initiatives).</li>
-          <li>Led international online collaboration research group (Shiga University–affiliated JHS, Japan) on <strong>Hydroelectricity</strong>.</li>
-        </ul>
+    <div class="item">
+      <div>
+        <div class="role">Effectively Lossless Infinite Context for LLMs (multimodal extension)</div>
+        <div class="org">Independent Research</div>
       </div>
-    </section>
+      <div class="date">2025–Present</div>
+      <ul class="bullets">
+        <li>Investigating architectures/training schemes for scaling context length with minimal information loss.</li>
+        <li>Extending the same principles to multimodal settings (text-vision) for long-horizon reasoning.</li>
+      </ul>
+    </div>
 
-    <section class="cv-section">
-      <h2>Research Experience</h2>
-      <div class="item">
-        <div>
-          <div class="role">Survey of Multimodal Large Language Models (2025): A Comprehensive Synthesis of Current Research and Developments</div>
-          <div class="org">Independent Research</div>
-        </div>
-        <div class="date">2025</div>
-        <ul class="bullets">
-          <li>Wrote a comprehensive synthesis survey of Multimodal Large Language Models.</li>
-          <li> Manuscript submission in progress.</li>
-        </ul>
+    <div class="item">
+      <div>
+        <div class="role">Hydroelectricity – Energy & Systems Study</div>
+        <div class="org">International Online Collaboration (Shiga Univ.–affiliated JHS)</div>
       </div>
+      <div class="date">2025</div>
+      <ul class="bullets">
+        <li>Led topic research and presented findings through joint sessions and school showcases (<em>placeholder: add number of sessions later</em>).</li>
+      </ul>
+    </div>
+  </section>
 
-      <div class="item">
-        <div>
-          <div class="role">Effectively Lossless Infinite Context for LLMs (applicable to Multimodal LLMs)</div>
-          <div class="org">Independent Research</div>
-        </div>
-        <div class="date">2025–Present</div>
-        <ul class="bullets">
-          <li>Investigating architectures/training schemes for scaling context length with minimal information loss.</li>
-          <li>Extending the same principles to multimodal settings (text-vision) for long-horizon reasoning.</li>
-        </ul>
+  <section class="cv-section">
+    <h2>Leadership & Public Speaking</h2>
+    <div class="item">
+      <div>
+        <div class="role">EXCO — Student Conductor & Head of Logistics</div>
+        <div class="org">School Choir</div>
       </div>
+      <div class="date">2025–Present</div>
+      <ul class="bullets">
+        <li>Conducted choir during sessions when the instructor was unavailable (<em>placeholder: add number of sessions or performances</em>).</li>
+        <li>Managed logistics and resources (<em>placeholder: add budget or scale managed</em>).</li>
+      </ul>
+    </div>
 
-      <div class="item">
-        <div>
-          <div class="role">Hydroelectricity – Energy & Systems Study</div>
-          <div class="org">International Online Collaboration (Shiga Univ.–affiliated JHS)</div>
-        </div>
-        <div class="date">2025</div>
-        <ul class="bullets">
-          <li>Led topic research, consolidating prior school project work into comparative system analysis.</li>
-          <li>Presented findings through joint sessions and school showcases.</li>
-        </ul>
+    <div class="item">
+      <div>
+        <div class="role">Event Emcee (selected)</div>
+        <div class="org">School Events</div>
       </div>
-    </section>
+      <div class="date">2023–2025</div>
+      <ul class="bullets">
+        <li>39th Annual Awards Ceremony (2025), with a team of two co-emcees.</li>
+        <li>Teachers’ Day (2024); National Day segments (2023, 2024).</li>
+        <li>Aesthetics Ambassador Presentation (2025); VIA Showcase Presentation (2025).</li>
+        <li>Science Research & Innovation Day; STEM Open House representative.</li>
+      </ul>
+    </div>
+  </section>
 
-    <section class="cv-section">
-      <h2>Leadership & Public Speaking</h2>
-      <div class="item">
-        <div>
-          <div class="role">EXCO — Student Conductor & Head of Logistics</div>
-          <div class="org">School Choir</div>
-        </div>
-        <div class="date">2025–Present</div>
-        <ul class="bullets">
-          <li>Conducted choir during sessions when the instructor was unavailable; coordinated rehearsals and repertoire.</li>
-          <li>Managed logistics and resources.</li>
-        </ul>
-      </div>
-
-      <div class="item">
-        <div>
-          <div class="role">Event Emcee (selected)</div>
-          <div class="org">School Events</div>
-        </div>
-        <div class="date">2023–2025</div>
-        <ul class="bullets">
-          <li>39th Annual Awards Ceremony (2025), with a team of two co-emcees.</li>
-          <li>Teachers’ Day (2024); National Day segments (2023, 2024).</li>
-          <li>Aesthetics Ambassador Presentation (2025); VIA Showcase Presentation (2025).</li>
-          <li>Regular presenter for Science Research & Innovation Day; STEM Open House representative.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="cv-section">
-      <h2>Awards & Achievements</h2>
-
-      <div class="two-col">
-        <div>
-          <div class="role" style="margin-bottom:.4rem;">STEM Competitions</div>
-          <div class="item">
-            <div>
-              <div class="org">Offshore & Sustainability Challenge — Ngee Ann Polytechnic</div>
-            </div>
-            <div class="date">Y1–Y3</div>
-            <ul class="bullets">
-              <li>Year 1: Design Marvel Award (Hull).</li>
-              <li>Year 2: Design Marvel Award (Propulsion).</li>
-              <li>Year 3: Merit Award + Design Marvel Award (Hull).</li>
-              <li>Mentor (planned): 2026 cohort.</li>
-            </ul>
+  <section class="cv-section">
+    <h2>Awards & Achievements</h2>
+    <div class="two-col">
+      <div>
+        <div class="role" style="margin-bottom:.4rem;">STEM Competitions</div>
+        <div class="item">
+          <div>
+            <div class="org">Offshore & Sustainability Challenge — Ngee Ann Polytechnic</div>
           </div>
-          <div class="item">
-            <div>
-              <div class="org">Singapore Junior Physics Olympiad (SJPO)</div>
-            </div>
-            <div class="date">2025</div>
-            <ul class="bullets">
-              <li>Results pending.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div>
-          <div class="role" style="margin-bottom:.4rem;">Music & Arts</div>
-          <div class="item">
-            <div>
-              <div class="org">SIFMA, Kuching — Ensemble</div>
-            </div>
-            <div class="date">2019</div>
-            <ul class="bullets">
-              <li>Certificate of Outstanding Performance (ensemble).</li>
-            </ul>
-          </div>
-          <div class="item">
-            <div>
-              <div class="org">Madeville Music Awards</div>
-            </div>
-            <div class="date">2021</div>
-            <ul class="bullets">
-              <li>Gold — Chamber Music (Quartet).</li>
-              <li>Silver — Chamber Music (Duo, Bach Double).</li>
-              <li>Silver — Solo Violin.</li>
-            </ul>
-          </div>
-          <div class="item">
-            <div>
-              <div class="org">International Stage4Kids Festival</div>
-            </div>
-            <div class="date">2021</div>
-            <ul class="bullets">
-              <li>Participation among performers from 22 countries.</li>
-            </ul>
-          </div>
-          <div class="item">
-            <div>
-              <div class="org">8th Asia Arts Festival</div>
-            </div>
-            <div class="date">2021</div>
-            <ul class="bullets">
-              <li>Gold Award — Violin Quartet.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" style="margin-top:.6rem;">
-        <div>
-          <div class="role">Literature & Academic Recognition</div>
-          <div class="org">NSLF; School Events</div>
-        </div>
-        <div class="date">2023–2025</div>
-        <ul class="bullets">
-          <li>NSLF Commendation Award (2023); NSLF Certificate of Achievement (2025).</li>
-          <li>Certificate of Appreciation — Science Research & Innovation Day (2024).</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="cv-section">
-      <h2>Skills</h2>
-      <div class="two-col">
-        <div>
+          <div class="date">Y1–Y3</div>
           <ul class="bullets">
-            <li><strong>Programming:</strong> Python (PyTorch, scikit-learn).</li>
-            <li><strong>CAD:</strong> SolidWorks (basic).</li>
-            <li><strong>Research:</strong> Literature review, experiment design, prototyping.</li>
+            <li>Year 1: Design Marvel Award (Hull).</li>
+            <li>Year 2: Design Marvel Award (Propulsion).</li>
+            <li>Year 3: Merit Award + Design Marvel Award (Hull).</li>
+            <li>Mentor (planned): 2026 cohort.</li>
           </ul>
         </div>
-        <div>
-          <ul class="bullets">
-            <li><strong>Communication:</strong> Public speaking, emceeing, technical presentations.</li>
-            <li><strong>Languages:</strong> English (fluent), Chinese (conversational).</li>
-            <li><strong>Interests:</strong> AI/ML, violin performance, bouldering/rock climbing.</li>
-          </ul>
+        <div class="item">
+          <div>
+            <div class="org">Singapore Junior Physics Olympiad (SJPO)</div>
+          </div>
+          <div class="date">2025</div>
+          <ul class="bullets"><li>Results pending.</li></ul>
         </div>
       </div>
-    </section>
-  </main>
+
+      <div>
+        <div class="role" style="margin-bottom:.4rem;">Music & Arts</div>
+        <div class="item">
+          <div>
+            <div class="org">SIFMA, Kuching — Ensemble</div>
+          </div>
+          <div class="date">2019</div>
+          <ul class="bullets"><li>Certificate of Outstanding Performance (ensemble).</li></ul>
+        </div>
+        <div class="item">
+          <div>
+            <div class="org">Madeville Music Awards</div>
+          </div>
+          <div class="date">2021</div>
+          <ul class="bullets">
+            <li>Gold — Chamber Music (Quartet).</li>
+            <li>Silver — Chamber Music (Duo, Bach Double).</li>
+            <li>Silver — Solo Violin.</li>
+          </ul>
+        </div>
+        <div class="item">
+          <div>
+            <div class="org">International Stage4Kids Festival</div>
+          </div>
+          <div class="date">2021</div>
+          <ul class="bullets"><li>Participation among performers from 22 countries (<em>placeholder: add award or rank if any</em>).</li></ul>
+        </div>
+        <div class="item">
+          <div>
+            <div class="org">8th Asia Arts Festival</div>
+          </div>
+          <div class="date">2021</div>
+          <ul class="bullets"><li>Gold Award — Violin Quartet.</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="item" style="margin-top:.6rem;">
+      <div>
+        <div class="role">Literature & Academic Recognition</div>
+        <div class="org">NSLF; School Events</div>
+      </div>
+      <div class="date">2023–2025</div>
+      <ul class="bullets">
+        <li>NSLF Commendation Award (2023); NSLF Certificate of Achievement (2025).</li>
+        <li>Certificate of Appreciation — Science Research & Innovation Day (2024).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Hidden metrics section you can unhide later -->
+  <section class="cv-section" style="display:none;">
+    <h2>Research Metrics</h2>
+    <ul class="bullets">
+      <li>H-index: ___</li>
+      <li>i10-index: ___</li>
+      <li>Total citations: ___</li>
+    </ul>
+  </section>
+
+  <section class="cv-section">
+    <h2>Skills</h2>
+    <div class="two-col">
+      <div>
+        <ul class="bullets">
+          <li><strong>Programming:</strong> Python (PyTorch, scikit-learn).</li>
+          <li><strong>CAD:</strong> SolidWorks (basic).</li>
+          <li><strong>Research:</strong> Literature review, experiment design, prototyping.</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li><strong>Communication:</strong> Public speaking, emceeing, technical presentations.</li>
+          <li><strong>Languages:</strong> English (fluent), Chinese (conversational).</li>
+          <li><strong>Interests:</strong> AI/ML, violin performance, bouldering/rock climbing (discipline, teamwork).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
-  // Grab the button you already have
-  const downloadBtn = document.querySelector('.cv-actions .cv-btn');
-
-  downloadBtn.addEventListener('click', function (event) {
-    event.preventDefault();
-
-    // Select the part of the page you want in the PDF
-    const element = document.querySelector('.cv-wrap');
-
-    // Options for the PDF
-    const opt = {
-      margin:       0.5,
-      filename:     'Reyence-Chua-CV.pdf',
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2 },
-      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-    };
-
-    // Create and download the PDF
-    html2pdf().from(element).set(opt).save();
-  });
+const downloadBtn = document.querySelector('.cv-actions .cv-btn');
+downloadBtn.addEventListener('click', function (event) {
+  event.preventDefault();
+  const element = document.querySelector('.cv-wrap');
+  const opt = {
+    margin: 0.5,
+    filename: 'Reyence-Chua-CV.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+  };
+  html2pdf().from(element).set(opt).save();
+});
 </script>
 
 </body>
